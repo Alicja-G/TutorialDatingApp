@@ -43,6 +43,7 @@ namespace DatingApp.API
                         opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                     });
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>(); //once per request in the scope //services.AddSingleton - it would be created only one time and used in the app || serviced.AddTransient - it would be created each time
