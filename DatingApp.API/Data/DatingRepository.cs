@@ -24,6 +24,13 @@ public DatingRepository(DataContext context)
             _context.Remove(entity);
         }
 
+        public async Task<Photo> GetPhoto(int id)
+        {
+            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+
+            return photo; 
+        }
+
         public async Task<User> GetUser(int userId)
         {
             var user = await _context.Users.Include(c => c.Photos).FirstOrDefaultAsync(u => u.Id == userId);
